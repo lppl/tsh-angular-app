@@ -1,0 +1,13 @@
+{
+  "injectChanges": true,
+  "files": [
+    "./web/**/*.{html,htm,css,js}"
+  ],
+  "watchOptions": {
+    "ignored": "node_modules"
+  },
+  "server": {
+    "baseDir": "./web",
+    "middleware": []
+  }
+}
