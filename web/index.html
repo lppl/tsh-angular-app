@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="paymentsApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Angularjs</title>
+    <base href="/">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="bower/angular/angular.min.js"></script>
+    <script src="build/js/application.js"></script>
+</head>
+<body ng-controller="PaymentsController">
+<div class="tsh-container container">
+    <h1 class="tsh-title">Where your money goes</h1>
+    <h4 class="tsh-subtitle">Payments made by Chichester District Council to individual suppliers with a value over £500
+        made within October. </h4>
+    <hr class="tsh-hr-spacer">
+    <form class="tsh-form form-inline"
+          ng-submit="submit()">
+        <fieldset>
+            <input ng-model="params.page" type="hidden">
+            <input ng-model="params.query"
+                   class="form-control tsh-search-suppliers"
+                   placeholder="Search suppliers">
+            <select ng-model="params.rating"
+                    name="rating"
+                    class="form-control">
+                <option value="0">All pound ratings</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <a href="?" class="btn" ng-click="reset()">Reset</a>
+            <button class="btn btn-info" type="submit">Search</button>
+        </fieldset>
+    </form>
+    <hr class="tsh-hr-blank-spacer">
+    <div class="tsh-table-container">
+        <table class="tsh-table">
+            <thead>
+            <tr class="tsh-table-row">
+                <th class="tsh-table-column tsh-table-header-column">Supplier</th>
+                <th class="tsh-table-column tsh-table-header-column">Pound rating</th>
+                <th class="tsh-table-column tsh-table-header-column">Reference</th>
+                <th class="tsh-table-column tsh-table-header-column">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="tsh-table-row" ng-if="info">
+                <td class="tsh-table-column" colspan="4">{{ info }}</td>
+            </tr>
+            <tr class="tsh-table-row" ng-repeat="payment in payments" ng-click="show_payment(payment)">
+                <td class="tsh-table-column">{{payment.payment_supplier}}</td>
+                <td class="tsh-table-column">
+                    <span ng-repeat="i in [1,2,3,4,5]"
+                          class="tsh-rating-ico tsh-rating-ico-{{ i}} {{ payment.payment_cost_rating >= i ? 'on' : '' }}">{{ i }}</span>
+                    <span class="tsh-rating-info">{{ payment.payment_cost_rating }}</span>
+                </td>
+                <td class="tsh-table-column">{{payment.payment_ref}}</td>
+                <td class="tsh-table-column">£{{payment.payment_amount}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <nav>
+        <ul class="tsh-pagination">
+            <li ng-if="page_left" class>
+                <a href ng-click="goto(page_left)" class="tsh-pagination-btn">&lsaquo;</a></li>
+            <li ng-repeat="(page, url) in pagination.links" class>
+                <a href ng-click="goto(page)"
+                   class="tsh-pagination-btn {{ page == pagination.current ? 'active' : 'noon' }}">{{ page }}</a></li>
+            <li ng-if="page_right" class>
+                <a href ng-click="goto(page_right)" class="tsh-pagination-btn">&rsaquo;</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div ng-if="payment" class="modal tsh-payment-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tsh-payment-modal-content">
+            <a ng-click="hide_payment()" class="btn pull-right clearfix">close</a>
+            <div class="clearfix"></div>
+            <h3 class="tsh-payment-modal-header clearfix">
+                {{ payment.payment_supplier }}
+                <br>
+                <span ng-repeat="i in [1,2,3,4,5]"
+                      class="tsh-rating-ico tsh-rating-ico-{{ i}} {{ payment.payment_cost_rating >= i ? 'on' : '' }}">
+                    {{ i }}</span>
+            </h3>
+            <hr>
+            <dl class="dl-horizontal">
+                <dt>Suppier</dt>
+                <dd>{{ payment.payment_supplier }}</dd>
+                <dt>Reference</dt>
+                <dd>{{ payment.payment_ref}}</dd>
+                <dt>Value</dt>
+                <dd>£{{ payment.payment_amount }}</dd>
+                <dt>Info</dt>
+                <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</dd>
+            </dl>
+            <hr>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
