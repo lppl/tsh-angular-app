@@ -1,4 +1,5 @@
 {
+  "open": false,
   "injectChanges": true,
   "files": [
     "./web/**/*.{html,htm,css,js}"
