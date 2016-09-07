@@ -7,7 +7,7 @@ body {
     margin-right: 10px;
 }
 
-.form-control:nth-last-child(1) {
+.form-control:last-child {
     margin-right: 0;
 }
 
@@ -52,6 +52,8 @@ body {
 
 .tsh-table-column:nth-child(2) {
     width: 180px;
+    padding: 20px 0;
+    overflow: visible;
 }
 
 .tsh-table-column:nth-child(3) {
@@ -76,9 +78,6 @@ body {
     border-left: none;
 }
 
-.tsh-table-column:nth-child(2){
-    padding: 20px 0;
-}
 
 .tsh-table-header-column {
     border-top: none;
@@ -208,10 +207,7 @@ body {
 
 @media (max-width: 500px) {
 
-    .tsh-search-suppliers
-
-    }
-    .tsh-rating-ico {
+    .tsh-table-column > .tsh-rating-ico {
         display: none;
     }
 
@@ -231,9 +227,9 @@ body {
     .tsh-table-column {
         padding: 4px
     }
+
     .tsh-table-column:first-child {
         text-indent: 0;
     }
-
 
 }
