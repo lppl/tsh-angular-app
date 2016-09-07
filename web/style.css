@@ -157,7 +157,6 @@ body {
 .tsh-pagination-btn-next[disabled] {
     background: #f6f6f6;
     border: 1px solid #bebebe;
-
 }
 
 .tsh-hr-spacer {
@@ -170,9 +169,7 @@ body {
 
 .tsh-payment-modal {
     display: block;
-    top:20%;
     outline: none;
-    overflow:hidden;
 }
 
 .tsh-payment-modal-content {
@@ -182,6 +179,21 @@ body {
 .tsh-payment-modal-header {
     text-align: center;
 }
+
+/*.modal-dialog {*/
+    /*display: inline-block;*/
+    /*text-align: left;*/
+    /*vertical-align: middle;*/
+/*}*/
+
+/*@media screen and (min-width: 768px) {*/
+    /*.modal:before {*/
+        /*display: inline-block;*/
+        /*vertical-align: middle;*/
+        /*content: " ";*/
+        /*height: 100%;*/
+    /*}*/
+/*}*/
 
 @media (min-width: 768px) {
     .tsh-search-suppliers {
@@ -213,11 +225,6 @@ body {
 
     .tsh-rating-info {
         display: inline-block;
-    }
-
-    .tsh-container,
-    .modal-dialog {
-        min-width: 360px;
     }
 
     .tsh-table {
