@@ -3,13 +3,9 @@
   "version": "1.0.0",
   "description": "TSH Developer Test Project",
   "scripts": {
-    "dev": "npm run dev:watch-css & npm run dev:watch-javascript & npm run dev:server",
+    "dev": "npm run dev:watch-javascript & npm run dev:server",
     "dev:server": "lite-server -c config/bs-config.json",
-    "dev:watch-css": "postcss ./src/**/*.css -d ./web/build/css/ --watch --map",
-    "dev:watch-javascript": "babel --watch src/application.es6 --out-file web/build/js/application.js",
-    "minify": "npm run minify:css & npm run minify:js",
-    "minify:css": "minify web/build/css/style.css --output web/build/css/style.min.css",
-    "minify:js": "minify web/build/js/application.js --output web/build/js/application.min.js"
+    "dev:watch-javascript": "babel --watch src/application.es6 --out-file web/build/js/application.js"
   },
   "author": "Łukasz Pietrek <lpietrek@gmail.com>",
   "license": "ISC",
